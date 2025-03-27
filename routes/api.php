@@ -16,16 +16,16 @@ Route::prefix('auth')->controller(AuthController::class)->group(function ()
     Route::post('/login', 'login');
 });
 
-Route::post('/auth/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::get('/products', [ProductController::class, 'index'])->middleware('auth:sanctum');
-Route::post('/product/add', [ProductController::class, 'store']);
-Route::get('/products/{product}', [ProductController::class, 'show']);
-Route::put('/products/{product}', [ProductController::class, 'update']);
-Route::delete('/products/delete/{product}', [ProductController::class, 'destroy']);
 
-// Route::middleware('auth:sanctum')->group(function () 
-// {
+Route::middleware('auth:sanctum')->group(function () 
+{
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::post('/product/add', [ProductController::class, 'store']);
+    Route::get('/products/{product}', [ProductController::class, 'show']);
+    Route::put('/products/{product}', [ProductController::class, 'update']);
+    Route::delete('/products/delete/{product}', [ProductController::class, 'destroy']);
     
-    
-// });
+});
